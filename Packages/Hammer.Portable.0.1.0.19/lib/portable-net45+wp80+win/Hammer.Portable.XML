@@ -1,0 +1,379 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hammer.Portable</name>
+    </assembly>
+    <members>
+        <member name="T:Hammer.Util.CodeBlockedException">
+            <summary>
+            The default exception that is thrown when the CodeBouncer detects an unexpected condition
+            </summary>
+        </member>
+        <member name="M:Hammer.Util.CodeBlockedException.#ctor(System.String)">
+            <summary>
+            Creates a new exception from the given message
+            </summary>
+            <param name="message">The error message</param>
+        </member>
+        <member name="T:Hammer.Util.ISubTypeValidator">
+            <summary>
+            Since reflection works different in different environments this interface provides a hook for an environment 
+            to determine if one type derives from another.  Hammer.Lib provides an implementation that is suitable for
+            use in most .NET apps (not Windows Phone or Windows Store).  
+            </summary>
+        </member>
+        <member name="M:Hammer.Util.ISubTypeValidator.IsSubTypeOf(System.Type,System.Type)">
+            <summary>
+            This method should return true in the following conditions.  1 - The sub candidate type is the same as the
+            base type.  2 - The sub candidate type is a subclass of the base type.  3 - The base type is an interface and the
+            sub type implements that interface.
+            </summary>
+            <param name="subCandidate">The type to test</param>
+            <param name="baseType">The base type to use as a reference</param>
+            <returns>True if the subCandidate is the same as the base type, a subclass of the base type, or implements the interface defined by the base type</returns>
+        </member>
+        <member name="T:Hammer.Util.PortableSubTypeValidator">
+            <summary>
+            A default implementation that is not actually implemented.  Hammer.Lib provides an implementation that is suitable for
+            use in most .NET apps (not Windows Phone or Windows Store).  
+            </summary>
+        </member>
+        <member name="M:Hammer.Util.PortableSubTypeValidator.IsSubTypeOf(System.Type,System.Type)">
+            <summary>
+            Not implemented
+            </summary>
+            <param name="subCandidate">Not implemented</param>
+            <param name="baseType">Not implemented</param>
+            <returns>Not implemented</returns>
+        </member>
+        <member name="T:Hammer.Util.CodeBouncer">
+            <summary>
+            A static class that provides useful helpers that let you validate argument inputs.
+            </summary>
+        </member>
+        <member name="M:Hammer.Util.CodeBouncer.ExpectNotNull(System.Object,System.String,System.Type)">
+            <summary>
+            Verifies that the given object is not null
+            </summary>
+            <param name="o">The object to test</param>
+            <param name="message">The exception message to use if the check fails</param>
+            <param name="exceptionType">When specified, overrides the default exception type that CodeBouncer throws</param>
+        </member>
+        <member name="M:Hammer.Util.CodeBouncer.ExpectNull(System.Object,System.String,System.Type)">
+            <summary>
+            Verifies that the given object is null
+            </summary>
+            <param name="o">The object to test</param>
+            <param name="message">The exception message to use if the check fails</param>
+            <param name="exceptionType">When specified, overrides the default exception type that CodeBouncer throws</param>
+        </member>
+        <member name="M:Hammer.Util.CodeBouncer.ExpectRange(System.Double,System.Double,System.Double,System.Type)">
+            <summary>
+            Verifies that the given value falls in the range
+            </summary>
+            <param name="value">The number to test</param>
+            <param name="inclusiveMin">The inclusive min bound</param>
+            <param name="exclusiveMax">The exclusive max bound</param>
+            <param name="exceptionType">When specified, overrides the default exception type that CodeBouncer throws</param>
+        </member>
+        <member name="M:Hammer.Util.CodeBouncer.ExpectTrue(System.Boolean,System.String,System.Type)">
+            <summary>
+            Verifies that a condition is true
+            </summary>
+            <param name="condition">The bool to test</param>
+            <param name="message">The exception message to use if the check fails</param>
+            <param name="exceptionType">When specified, overrides the default exception type that CodeBouncer throws</param>
+        </member>
+        <member name="M:Hammer.Util.CodeBouncer.ExpectFalse(System.Boolean,System.String,System.Type)">
+            <summary>
+            Verifies that a condition is false
+            </summary>
+            <param name="condition">The bool to test</param>
+            <param name="message">The exception message to use if the check fails</param>
+            <param name="exceptionType">When specified, overrides the default exception type that CodeBouncer throws</param>
+        </member>
+        <member name="M:Hammer.Util.CodeBouncer.ExpectEqual(System.Object,System.Object,System.String,System.Type)">
+            <summary>
+            Verifies that the two given objects are equal using ObjectHelpers.EqualsSafe()
+            </summary>
+            <param name="a">An object to test</param>
+            <param name="b">Another object to test</param>
+            <param name="message">The exception message to use if the check fails</param>
+            <param name="exceptionType">When specified, overrides the default exception type that CodeBouncer throws</param>
+        </member>
+        <member name="M:Hammer.Util.CodeBouncer.ExpectNotEqual(System.Object,System.Object,System.String,System.Type)">
+            <summary>
+            Verifies that the two given objects are not equal using ObjectHelpers.EqualsSafe()
+            </summary>
+            <param name="a">An object to test</param>
+            <param name="b">Another object to test</param>
+            <param name="message">The exception message to use if the check fails</param>
+            <param name="exceptionType">When specified, overrides the default exception type that CodeBouncer throws</param>
+        </member>
+        <member name="M:Hammer.Util.CodeBouncer.ExpectSame(System.Object,System.Object,System.String,System.Type)">
+            <summary>
+            Verifies that the two given references point to the same object
+            </summary>
+            <param name="a">An object to test</param>
+            <param name="b">Another object to test</param>
+            <param name="message">The exception message to use if the check fails</param>
+            <param name="exceptionType">When specified, overrides the default exception type that CodeBouncer throws</param>
+        </member>
+        <member name="M:Hammer.Util.CodeBouncer.ExpectNotSame(System.Object,System.Object,System.String,System.Type)">
+            <summary>
+            Verifies that the two given references do not point to the same object
+            </summary>
+            <param name="a">An object to test</param>
+            <param name="b">Another object to test</param>
+            <param name="message">The exception message to use if the check fails</param>
+            <param name="exceptionType">When specified, overrides the default exception type that CodeBouncer throws</param>
+        </member>
+        <member name="M:Hammer.Util.CodeBouncer.ExpectIs``1(System.Object,System.Boolean,System.String,System.Type)">
+            <summary>
+            Verifies that the given object is or derives from a given type
+            </summary>
+            <typeparam name="T">The expected type</typeparam>
+            <param name="o">The object to test</param>
+            <param name="acceptSubTypes">If false, this method requires the given object to be the exact same type as the expected type.  If true, subclasses are allowed and it is acceptable for the expected type to be an interface and for the object to be of a type that implements that interface.</param>
+            <param name="message">The exception message to use if the check fails</param>
+            <param name="exceptionType">When specified, overrides the default exception type that CodeBouncer throws</param>
+            <returns></returns>
+        </member>
+        <member name="M:Hammer.Util.CodeBouncer.ExpectIs(System.Object,System.Type,System.Boolean,System.String,System.Type)">
+            <summary>
+            Verifies that the given object is or derives from a given type
+            </summary>
+            <param name="o">The object to test</param>
+            <param name="expectedType">The expected type</param>
+            <param name="acceptSubTypes">If false, this method requires the given object to be the exact same type as the expected type.  If true, subclasses are allowed and it is acceptable for the expected type to be an interface and for the object to be of a type that implements that interface.</param>
+            <param name="message">The exception message to use if the check fails</param>
+            <param name="exceptionType">When specified, overrides the default exception type that CodeBouncer throws</param>
+            <returns></returns>
+        </member>
+        <member name="M:Hammer.Util.CodeBouncer.ExpectContains``1(System.Collections.Generic.IEnumerable{``0},``0,System.String,System.Type)">
+            <summary>
+            Verifies that the given item exists in the given collection
+            </summary>
+            <typeparam name="T">The type of values in the collection</typeparam>
+            <param name="collection">The collection to inspect</param>
+            <param name="value">The object to look for</param>
+            <param name="message">The exception message to use if the check fails</param>
+            <param name="exceptionType">When specified, overrides the default exception type that CodeBouncer throws</param>
+        </member>
+        <member name="M:Hammer.Util.CodeBouncer.ExpectNotContains``1(System.Collections.Generic.IEnumerable{``0},``0,System.String,System.Type)">
+            <summary>
+            Verifies that the given item does not exist in the given collection
+            </summary>
+            <typeparam name="T">The type of values in the collection</typeparam>
+            <param name="collection">The collection to inspect</param>
+            <param name="value">The object to look for</param>
+            <param name="message">The exception message to use if the check fails</param>
+            <param name="exceptionType">When specified, overrides the default exception type that CodeBouncer throws</param>
+        </member>
+        <member name="P:Hammer.Util.CodeBouncer.SubTypeValidator">
+            <summary>
+            Gets or sets the SubTypeValidator for the current environment
+            </summary>
+        </member>
+        <member name="T:Hammer.Util.ObjectHelpers">
+            <summary>
+            Helper methods that apply to all objects.
+            </summary>
+        </member>
+        <member name="M:Hammer.Util.ObjectHelpers.EqualsSafeDeferred``1(``0,System.Object,System.Func{``0,System.Object})">
+            <summary>
+            Used to test equality of two objects' characteristics (usually properties) by evaluating the two objects and comparing
+            the results of the evaluation.  If both inputs are null the evaluation will not take place and true will be returned.
+            If one value is null and the other is not then the evaluation will not take place and false will be returned.
+            </summary>
+            <typeparam name="T">The type of objects being evaluated</typeparam>
+            <param name="a">The first object to evaluate</param>
+            <param name="b">The second object to evaluate</param>
+            <param name="eval">The evaluation function to apply to the input objects</param>
+            <returns>True if the evaluated objects are equal as determined by EqualsSafe.</returns>
+        </member>
+        <member name="M:Hammer.Util.ObjectHelpers.EqualsSafe(System.Object,System.Object)">
+            <summary>
+            A generic equals implementation that allows nulls to be passed for either parameter.  Objects should not call this from
+            within their own equals method since that will cause a stack overflow.  The Equals() functions do not get called if the two
+            inputs reference the same object.
+            </summary>
+            <param name="a">The first object to test</param>
+            <param name="b">The second object to test</param>
+            <returns>True if the values are equal, false otherwise.</returns>
+        </member>
+        <member name="T:Hammer.Util.ObservablePropertyBag">
+            <summary>
+            A helper that makes it easy to define an object with observable properties
+            </summary>
+        </member>
+        <member name="M:Hammer.Util.ObservablePropertyBag.#ctor(System.Object)">
+            <summary>
+            Creates a new bag and optionally sets the notifier object.
+            </summary>
+            <param name="sender">The object to be used as the sender for notification events (defaults to this)</param>
+        </member>
+        <member name="M:Hammer.Util.ObservablePropertyBag.Get``1(System.String)">
+            <summary>
+            This should be called by a property getter to get the value
+            </summary>
+            <typeparam name="T">The type of property to get</typeparam>
+            <param name="name">The name of the property to get (should be inferred from the caller)</param>
+            <returns>The property's current value</returns>
+        </member>
+        <member name="M:Hammer.Util.ObservablePropertyBag.Set``1(``0,System.String)">
+            <summary>
+            This should be called by a property getter to set the value.
+            </summary>
+            <typeparam name="T">The type of property to set</typeparam>
+            <param name="value">The value to set</param>
+            <param name="name">The name of the property to set (should be inferred from the caller)</param>
+        </member>
+        <member name="E:Hammer.Util.ObservablePropertyBag.PropertyChanged">
+            <summary>
+            The change event
+            </summary>
+        </member>
+        <member name="P:Hammer.Util.ObservablePropertyBag.NotifierObject">
+            <summary>
+            The object to be used as the sender for notification events (defaults to this).
+            </summary>
+        </member>
+        <member name="P:Hammer.Util.ObservablePropertyBag.SuppressEqualChanges">
+            <summary>
+            Set to true if you want to suppress notification events for properties that get set to their existing values.
+            </summary>
+        </member>
+        <member name="T:Hammer.Util.PropertyBag`2">
+            <summary>
+            A wrapper around a dictionary that allows setting of values without first performing an add.
+            It also provides a hook that can cancel setting at runtime.
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <typeparam name="TValue"></typeparam>
+        </member>
+        <member name="M:Hammer.Util.PropertyBag`2.#ctor">
+            <summary>
+            Creates a new property bag
+            </summary>
+        </member>
+        <member name="M:Hammer.Util.PropertyBag`2.Clear">
+            <summary>
+            Clears the property bag
+            </summary>
+        </member>
+        <member name="M:Hammer.Util.PropertyBag`2.Remove(`0)">
+            <summary>
+            Manually removes a property
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hammer.Util.PropertyBag`2.ContainsKey(`0)">
+            <summary>
+            Test to see if the bag contains an item with the given key
+            </summary>
+            <param name="key">The key to test for</param>
+            <returns>True if the bag contains a value with the given key, false otherwise</returns>
+        </member>
+        <member name="P:Hammer.Util.PropertyBag`2.InnerDictionary">
+            <summary>
+            Get access to the inner dictionary
+            </summary>
+        </member>
+        <member name="P:Hammer.Util.PropertyBag`2.BeforeSet">
+            <summary>
+            A hook that can be used to cancel a set operation.  The function should return true
+            in order to cancel the set operation.
+            </summary>
+        </member>
+        <member name="P:Hammer.Util.PropertyBag`2.Keys">
+            <summary>
+            Gets the keys
+            </summary>
+        </member>
+        <member name="P:Hammer.Util.PropertyBag`2.Item(`0)">
+            <summary>
+            Gets or sets a property based off of a key
+            </summary>
+            <param name="key">The key to the value to get or set</param>
+            <returns>The value</returns>
+        </member>
+        <member name="T:Hammer.Util.RegexHelpers">
+            <summary>
+            Regular expression helpers
+            </summary>
+        </member>
+        <member name="M:Hammer.Util.RegexHelpers.Group(System.String,System.String)">
+            <summary>
+            Group the given regex into the given named group
+            </summary>
+            <param name="regex">The regex to group</param>
+            <param name="groupName">The optional name of the group</param>
+            <returns>the grouped and optionally named regex</returns>
+        </member>
+        <member name="M:Hammer.Util.RegexHelpers.MatchCollectionToList(System.Text.RegularExpressions.MatchCollection)">
+            <summary>
+            Converts a MatchCollection to a List of Match objects
+            </summary>
+            <param name="matches">The MatchCollection to convert</param>
+            <returns>a list of Match objects</returns>
+        </member>
+        <member name="M:Hammer.Util.RegexHelpers.ToList(System.Text.RegularExpressions.MatchCollection)">
+            <summary>
+            Converts a MatchCollection to a List of Match objects
+            </summary>
+            <param name="matches">The MatchCollection to convert</param>
+            <returns>a list of Match objects</returns>
+        </member>
+        <member name="T:Hammer.Util.ITimeoutProvider">
+            <summary>
+            An interface for a timeout implementation
+            </summary>
+        </member>
+        <member name="M:Hammer.Util.ITimeoutProvider.SetTimeout(System.TimeSpan)">
+            <summary>
+            Resets the timeout
+            </summary>
+            <param name="t"></param>
+        </member>
+        <member name="E:Hammer.Util.ITimeoutProvider.TimeoutFired">
+            <summary>
+            The action that will fire when the timeout expires
+            </summary>
+        </member>
+        <member name="T:Hammer.Util.ThrottledAction">
+            <summary>
+            A wrapper around an Action that makes it easy to limit the frequency of which a piece of code runs.  
+            For example, a user interface may want to auto save progress as the user works, but it may be undesirable
+            to save after every click or change.
+            </summary>
+        </member>
+        <member name="M:Hammer.Util.ThrottledAction.#ctor(System.Action,System.TimeSpan,Hammer.Util.ITimeoutProvider)">
+            <summary>
+            Creates a new throttled action.
+            </summary>
+            <param name="action">The action to invoke</param>
+            <param name="throttlePeriod">The throttle period.  </param>
+            <param name="timer">The timeout implementation.  Different environments support different timer implementations. </param>
+        </member>
+        <member name="M:Hammer.Util.ThrottledAction.Invoke(System.Boolean)">
+            <summary>
+            Resets the timeout.  The code will only get invoked after the timeout expires.  The benefit here
+            is that if a burst of calls happen around the same time, the code will only get executed once, after the 
+            burst completes.
+            </summary>
+            <param name="force">If true the code will get invoked immidiately</param>
+        </member>
+        <member name="P:Hammer.Util.ThrottledAction.ThrottlePeriod">
+            <summary>
+            The time to wait after an invoke is called before actually running the action code
+            </summary>
+        </member>
+        <member name="P:Hammer.Util.ThrottledAction.InnerAction">
+            <summary>
+            The wrapped action code
+            </summary>
+        </member>
+    </members>
+</doc>
