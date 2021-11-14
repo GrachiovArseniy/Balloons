@@ -3,13 +3,13 @@ using UnityEngine.UI;
 
 internal class UI : MonoBehaviour
 {
+    private readonly ScoreSaver _scoreSaver = new ScoreSaver();
+
     [SerializeField] private ScorePresenter _scorePresenter;
     [SerializeField] private GameObject _pausePanel;
     [SerializeField] private GameObject _losePanel;
     [SerializeField] private Text _bestResultText;
     [SerializeField] private Text _resultText;
-
-    private readonly ScoreSaver _scoreSaver = new ScoreSaver();
 
     public void OpenPausePanel()
     {

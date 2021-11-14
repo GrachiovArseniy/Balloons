@@ -4,12 +4,13 @@ namespace Balloons.Model
 {
     public class PlayerHealth
     {
-        public int Value => _balloonVisitor.PlayerHealth;
+        private readonly BalloonVisitor _balloonVisitor = new BalloonVisitor();
 
         public event Action Changed;
+
         public event Action GameLosted;
 
-        private readonly BalloonVisitor _balloonVisitor = new BalloonVisitor();
+        public int Value => _balloonVisitor.PlayerHealth;
 
         internal void Damage(BalloonType balloon)
         {

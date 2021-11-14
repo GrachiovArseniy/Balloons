@@ -4,6 +4,12 @@ namespace Balloons.Model
 {
     public class Time
     {
+        private readonly List<IUpdateable> _entities = new List<IUpdateable>();
+        private readonly BalloonSpawner _balloonSpawner;
+        private readonly FieldBorder _fieldBorder;
+        private readonly PlayerHealth _playerHealth;
+        private readonly Score _score;
+
         public Time(BalloonSpawner balloonSpawner, FieldBorder fieldBorder, PlayerHealth playerHealth, Score score)
         {
             _balloonSpawner = balloonSpawner;
@@ -11,12 +17,6 @@ namespace Balloons.Model
             _playerHealth = playerHealth;
             _score = score;
         }
-
-        private readonly List<IUpdateable> _entities = new List<IUpdateable>();
-        private readonly BalloonSpawner _balloonSpawner;
-        private readonly FieldBorder _fieldBorder;
-        private readonly PlayerHealth _playerHealth;
-        private readonly Score _score;
 
         public void UpdateAll(float deltaTime)
         {

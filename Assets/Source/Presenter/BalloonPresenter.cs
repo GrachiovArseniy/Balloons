@@ -1,13 +1,13 @@
-using Balloons.Model;
 using System.Collections;
+using Balloons.Model;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
 internal class BalloonPresenter : MonoBehaviour
 {
-    public Transformable Model { get; private set; }
-
     private readonly BalloonVisitor _balloonVisitor = new BalloonVisitor();
+
+    public Transformable Model { get; private set; }
 
     internal void Init(Transformable model, Color color, BalloonType balloonType)
     {
@@ -48,7 +48,7 @@ internal class BalloonPresenter : MonoBehaviour
         Model.Destroying -= Destroy;
         Model.Removing -= Destroy;
 
-        LateDestroy();
+        StartCoroutine(LateDestroy());
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponentInChildren<ParticleSystem>().Play();
     }

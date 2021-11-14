@@ -4,14 +4,14 @@ namespace Balloons.Model
 {
     public abstract class Spawner<T> : IUpdateable
     {
-        public event Action<T> EntitySpawned;
+        protected float multiplier = 1;
+        private float _timeOut;
 
         private Time _time;
 
-        protected virtual float EntitiesPerSecond { get; private set; }
+        public event Action<T> EntitySpawned;
 
-        protected float Multiplier = 1;
-        private float _timeOut;
+        protected virtual float EntitiesPerSecond { get; private set; }
 
         public void SetTime(Time time)
         {
@@ -22,7 +22,7 @@ namespace Balloons.Model
         {
             _timeOut += deltaTime;
 
-            if (_timeOut > (1 / (EntitiesPerSecond * Multiplier)))
+            if (_timeOut > (1 / (EntitiesPerSecond * multiplier)))
             {
                 int balloonType = new Random().Next(1, 4);
 
@@ -44,7 +44,12 @@ namespace Balloons.Model
                 _timeOut = 0;
             }
 
-            Multiplier += Config.SpawnerAcceleration;
+            multiplier += Config.SpawnerAcceleration;
+        }
+
+        protected virtual Transformable SpawnEntity(BalloonType balloonType)
+        {
+            return null;
         }
 
         private void Spawn(BalloonType balloonType)
@@ -53,11 +58,6 @@ namespace Balloons.Model
             _time.AddEntity(newEntity);
 
             EntitySpawned?.Invoke((dynamic)newEntity);
-        }
-
-        protected virtual Transformable SpawnEntity(BalloonType balloonType)
-        {
-            return null;
         }
     }
 }

@@ -3,8 +3,8 @@ using UnityEngine;
 
 internal abstract class SpawnerPresenter<T> : MonoBehaviour
 {
-    private Spawner<T> _spawner;
     protected GameObject _entityPrefab;
+    private Spawner<T> _spawner;
 
     internal void Init(Spawner<T> spawner, GameObject entityPrefab)
     {
@@ -12,6 +12,8 @@ internal abstract class SpawnerPresenter<T> : MonoBehaviour
         _entityPrefab = entityPrefab;
         enabled = true;
     }
+
+    protected virtual void SpawnEntity(T entity) { }
 
     private void OnEnable()
     {
@@ -22,6 +24,4 @@ internal abstract class SpawnerPresenter<T> : MonoBehaviour
     {
         _spawner.EntitySpawned -= SpawnEntity;
     }
-
-    protected virtual void SpawnEntity(T entity) { }
 }

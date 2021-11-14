@@ -4,11 +4,11 @@ namespace Balloons.Model
 {
     public class Score
     {
-        public int Value => Convert.ToInt32(_balloonVisitor.AccumulatedScore);
+        private readonly BalloonVisitor _balloonVisitor = new BalloonVisitor();
 
         public event Action Changed;
 
-        private readonly BalloonVisitor _balloonVisitor = new BalloonVisitor();
+        public int Value => Convert.ToInt32(_balloonVisitor.AccumulatedScore);
 
         internal void Add(BalloonType value)
         {

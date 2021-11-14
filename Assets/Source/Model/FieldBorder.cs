@@ -4,13 +4,18 @@ namespace Balloons.Model
 {
     public class FieldBorder : IUpdateable
     {
+        private readonly List<Transformable> _entities = new List<Transformable>();
+        private readonly float _downBorder;
+
         public FieldBorder(float downBorder)
         {
             _downBorder = downBorder;
         }
 
-        private readonly List<Transformable> _entities = new List<Transformable>();
-        private readonly float _downBorder;
+        public void DestroyAll()
+        {
+            _entities.ForEach(i => i.Remove());
+        }
 
         internal void AddEntity(Transformable entity)
         {
@@ -28,11 +33,6 @@ namespace Balloons.Model
                     _entities.Remove(entity);
                 }
             }
-        }
-
-        public void DestroyAll()
-        {
-            _entities.ForEach(i => i.Remove());
         }
     }
 }

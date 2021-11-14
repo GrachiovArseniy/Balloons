@@ -4,7 +4,13 @@ namespace Balloons.Model
 {
     public class Balloon : Transformable
     {
-        public Balloon(BalloonType type, float speed, Position position, PlayerHealth playerHealth) : base(position) 
+        public readonly UnityEngine.Color Color = Config.BalloonColors[new Random().Next(0, Config.BalloonColors.Count)];
+        public readonly BalloonType Type;
+
+        private readonly PlayerHealth _playerHealth;
+        private readonly float _speed;
+
+        public Balloon(BalloonType type, float speed, Position position, PlayerHealth playerHealth) : base(position)
         {
             if (speed <= 0)
                 throw new ArgumentOutOfRangeException(nameof(speed));
@@ -13,12 +19,6 @@ namespace Balloons.Model
             _playerHealth = playerHealth;
             _speed = speed;
         }
-
-        public readonly UnityEngine.Color Color = Config.BalloonColors[new Random().Next(0, Config.BalloonColors.Count)];
-        public readonly BalloonType Type;
-
-        private readonly PlayerHealth _playerHealth;
-        private readonly float _speed;
 
         internal override void Update(float deltaTime)
         {

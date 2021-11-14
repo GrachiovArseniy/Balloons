@@ -4,10 +4,10 @@ using UnityEngine.UI;
 
 internal class ScorePresenter : MonoBehaviour
 {
-    public int Score => _score.Value;
-
     private Score _score;
     private Text _text;
+
+    public int Score => _score.Value;
 
     internal void Init(Score scoreModel, Text text)
     {

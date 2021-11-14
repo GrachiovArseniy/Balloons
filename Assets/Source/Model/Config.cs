@@ -29,7 +29,9 @@ namespace Balloons.Model
         public static readonly uint BigSize = 7;
 
         public static readonly IReadOnlyList<UnityEngine.Color> BalloonColors = new UnityEngine.Color[]
-                { UnityEngine.Color.black, UnityEngine.Color.blue, UnityEngine.Color.cyan, UnityEngine.Color.gray, UnityEngine.Color.green, 
-                  UnityEngine.Color.magenta, UnityEngine.Color.red, UnityEngine.Color.white, UnityEngine.Color.yellow };
+                {
+                    UnityEngine.Color.black, UnityEngine.Color.blue, UnityEngine.Color.cyan, UnityEngine.Color.gray, UnityEngine.Color.green,
+                    UnityEngine.Color.magenta, UnityEngine.Color.red, UnityEngine.Color.white, UnityEngine.Color.yellow,
+                };
     }
 }

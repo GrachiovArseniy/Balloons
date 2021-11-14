@@ -10,7 +10,9 @@ namespace Balloons.Model
         }
 
         public event Action Moved;
+
         public event Action<Transformable> Removing;
+
         public event Action<Transformable> Destroying; // If a player hits the balloon
 
         public Position Position { get; private set; }
